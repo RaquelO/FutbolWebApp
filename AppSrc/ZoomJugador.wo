@@ -7,10 +7,14 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebButton.pkg
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
+
+Use SelectEquipo.wo
+Use SelectPosicion.wo
 
 Object oZoomJugador is a cWebView
     Set piColumnCount to 12
@@ -63,6 +67,36 @@ Object oZoomJugador is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "Nacionalidad"
         End_Object 
+        
+        Object oequipoNombre is a cWebForm
+            Entry_Item equipo.Nombre
+            Set piColumnSpan to 10
+            Set piColumnIndex to 0
+            Set peLabelPosition to lpTop
+            Set psLabel to "Equipo"
+        End_Object
+        
+        Object oEquipoButton is a cWebButton
+            Set psCaption to "Seleccionar Equipo"
+            Set piColumnSpan to 10
+            
+            WebRegisterPath ntNavigateForward oSelectEquipo
+            
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+        End_Object
+        
+        Object oPosicionButton is a cWebButton
+            Set psCaption to "Seleccionar Posición"
+            Set piColumnSpan to 10
+            
+            WebRegisterPath ntNavigateForward oSelectPosicion
+            
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+        End_Object
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
@@ -107,6 +141,7 @@ Object oZoomJugador is a cWebView
             End_Procedure
 
         End_Object 
+        
     End_Object 
 
     Procedure SetActionButtons
